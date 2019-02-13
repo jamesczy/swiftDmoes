@@ -8,6 +8,10 @@
 
 import UIKit
 
+let rongCouldAppKey = "kj7swf8ok3y22"
+
+let rongCouldAppSecret = "pd5n92pac4V"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,6 +20,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        //调用tableview背景图没有数据时设置默认是图片
+        UITableView.initializeMethod()
+        
+        RCIM.shared()?.initWithAppKey(rongCouldAppKey)
+        
+        self.window = UIWindow.init(frame: UIScreen.main.bounds)
+        
+        let rootVC = ViewController()
+        
+        rootVC.title = "首页"
+        
+        let nav = UINavigationController.init(rootViewController: rootVC)
+        
+        self.window?.rootViewController = nav
+        
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
@@ -27,6 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
